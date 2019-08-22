@@ -74,8 +74,8 @@ public class FileBrowserActivity extends AppCompatActivity implements LocationBa
             return;
         }
         mTitle = bundle.getString(KEY_FILE_BROWSER_TITLE);
-        mSelectCount = bundle.getInt(FileBrowser.KEY_SELECT_COUNT, -1);
-        Object listener = IntentListenerManager.getListener(FileBrowser.KEY_FILE_FILTER);
+        mSelectCount = bundle.getInt(FileBrowserCallbackFragment.KEY_SELECT_COUNT, -1);
+        Object listener = IntentListenerManager.getListener(FileBrowserCallbackFragment.KEY_FILE_FILTER);
         if (listener != null) {
             mFilter = (Filter) listener;
         } else {
@@ -113,7 +113,7 @@ public class FileBrowserActivity extends AppCompatActivity implements LocationBa
     }
 
     private void setRealContentView() {
-        mLocationBarView =  findViewById(R.id.location_bar);
+        mLocationBarView = findViewById(R.id.location_bar);
         mRecyclerView = findViewById(R.id.recycler_view);
         mAdapter = new FileListAdapter(this);
         mAdapter.registerViewHolder(R.layout.layout_file_item);
@@ -180,18 +180,20 @@ public class FileBrowserActivity extends AppCompatActivity implements LocationBa
     }
 
     private void loadData(final File file) {
-        BlackBox.of(this).with(new PermissionEvent(Manifest.permission.WRITE_EXTERNAL_STORAGE)).execute(new Action() {
-            @Override
-            public void call() {
-                new Thread(new Runnable() {
+        BlackBox.of(this)
+                .with(new PermissionEvent(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                .execute(new Action() {
                     @Override
-                    public void run() {
-                        List<File> files = getLocalFiles(file);
-                        showFiles(files);
+                    public void call() {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<File> files = getLocalFiles(file);
+                                showFiles(files);
+                            }
+                        }).start();
                     }
-                }).start();
-            }
-        });
+                });
     }
 
     private void showFiles(final List<File> files) {

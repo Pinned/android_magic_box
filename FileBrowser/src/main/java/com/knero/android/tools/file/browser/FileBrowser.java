@@ -1,16 +1,14 @@
 package com.knero.android.tools.file.browser;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 
 import com.knero.android.tools.file.browser.filter.Filter;
-import com.knero.android.tools.file.browser.ui.FileBrowserActivity;
-import com.knero.android.tools.file.browser.ui.IntentListenerManager;
+import com.knero.android.tools.file.browser.ui.FileBrowserCallbackFragment;
 
-import java.lang.ref.WeakReference;
+import java.util.List;
 
 /**
  * Created by luozhaocheng on 19/06/2017.
@@ -18,31 +16,28 @@ import java.lang.ref.WeakReference;
 
 public class FileBrowser {
 
-    private WeakReference<Activity> mContext;
-    private WeakReference<Fragment> mFragment;
-    public static final String KEY_SELECT_COUNT = "Select_count";
-    public static final String KEY_FILE_FILTER = "File_filter";
+    private FileBrowserCallbackFragment.Lazy<FileBrowserCallbackFragment> mLazyFragment;
     private int mSelectCount = -1;
     private Filter mFilter;
 
-    private FileBrowser(Activity activity) {
-        this(activity, null);
+    private FileBrowser(FragmentActivity activity) {
+        this(activity.getSupportFragmentManager());
     }
 
     private FileBrowser(Fragment fragment) {
-        this(fragment.getActivity(), fragment);
+        this(fragment.getChildFragmentManager());
     }
 
-    private FileBrowser(Activity activity, Fragment fragment) {
-        mContext = new WeakReference<>(activity);
-        mFragment = new WeakReference<>(fragment);
+    private FileBrowser(final FragmentManager manager) {
+        mLazyFragment = FileBrowserCallbackFragment.createLazyFragemnt(manager);
     }
 
-    public static FileBrowser from(Activity activity) {
+
+    public static FileBrowser of(FragmentActivity activity) {
         return new FileBrowser(activity);
     }
 
-    public static FileBrowser from(Fragment fragment) {
+    public static FileBrowser of(Fragment fragment) {
         return new FileBrowser(fragment);
     }
 
@@ -56,22 +51,15 @@ public class FileBrowser {
         return this;
     }
 
-    public void forResult(int requestCode) {
-        Activity activity = mContext.get();
-        if (activity == null) {
-            return;
-        }
-
-        Intent intent = new Intent(activity, FileBrowserActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt(KEY_SELECT_COUNT, mSelectCount);
-        intent.putExtras(bundle);
-        IntentListenerManager.putListener(KEY_FILE_FILTER, mFilter);
-        Fragment fragment = mFragment.get();
-        if (fragment != null) {
-            fragment.startActivityForResult(intent, requestCode);
-        } else {
-            activity.startActivityForResult(intent, requestCode);
-        }
+    public void start(OnFileListener listener) {
+        mLazyFragment.get().start(mSelectCount, mFilter, listener);
     }
+
+
+    public interface OnFileListener {
+        void onSuccess(List<String> files);
+
+        void onCancel();
+    }
+
 }
