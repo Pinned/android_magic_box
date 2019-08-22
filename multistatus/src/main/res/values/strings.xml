@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- multi_status_view -->
+    <string name="multi_status_err_msg">出错误啦</string>
+    <string name="multi_status_error_retry">重试</string>
+    <string name="multi_status_no_network">网络异常，请检查网络设置</string>
+    <string name="multi_status_set_network">设置网络</string>
+    <string name="multi_status_empty_msg">数据为空</string>
+</resources>
