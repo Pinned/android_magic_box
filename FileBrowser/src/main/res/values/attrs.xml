@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="toolbar" format="reference"></attr>
+    <attr name="toolbar.back.color" format="reference|color"></attr>
+    <attr name="toolbar.back.icon" format="reference"></attr>
+
+    <!-- Bottom ToolBar 相关属性-->
+    <attr name="bottomToolBar.bg" format="reference|color"></attr>
+    <attr name="bottomToolBar.opt.padding" format="dimension"></attr>
+    <attr name="bottomToolBar.opt.textSize" format="dimension"></attr>
+    <attr name="bottomToolBar.preview.textColor" format="reference|color"></attr>
+    <attr name="bottomToolBar.apply.textColor" format="reference|color"></attr>
+
+    <attr name="fileItemTitleStyle" format="reference"></attr>
+</resources>

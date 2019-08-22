@@ -1,0 +1,7 @@
+<resources>
+    <string name="file_browser_title">选择文件</string>
+
+    <string name="button_preview">Preview</string>
+    <string name="button_apply_default">Apply</string>
+    <string name="button_apply">Apply(%1$d)</string>
+</resources>

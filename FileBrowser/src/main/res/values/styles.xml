@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FileBrowser" parent="Theme.AppCompat.Light.NoActionBar"></style>
+
+    <style name="FileBrowser.Default">
+        <item name="colorPrimary">@color/default_primary</item>
+        <item name="colorPrimaryDark">@color/default_primary_dark</item>
+
+        <item name="toolbar">@style/Toolbar.Default</item>
+        <item name="toolbar.back.color">#FFFFFF</item>
+
+        <item name="bottomToolBar.bg">@color/default_bottom_toolbar_bg</item>
+        <item name="bottomToolBar.opt.padding">16dp</item>
+        <item name="bottomToolBar.opt.textSize">16sp</item>
+        <item name="bottomToolBar.preview.textColor">@color/default_bottom_toolbar_preview</item>
+        <item name="bottomToolBar.apply.textColor">@color/default_bottom_toolbar_apply</item>
+        <item name="fileItemTitleStyle">@style/FileItemTitleStyle</item>
+    </style>
+
+    <style name="FileItemTitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">middle</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="Toolbar.Default" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
+</resources>
