@@ -1,1 +1,1 @@
-include ':app', ':blackbox', ':recycler', ':FileBrowser'
+include ':app', ':blackbox', ':recycler', ':FileBrowser', ':multistatus'

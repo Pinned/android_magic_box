@@ -29,6 +29,7 @@ import com.knero.android.tools.file.browser.internal.model.LocationItem;
 import com.knero.android.tools.file.browser.ui.adapter.FileListAdapter;
 import com.knero.android.tools.file.browser.ui.widget.location.LocationBarView;
 import com.knero.android.tools.recycler.widget.RecyclerViewHelper;
+import com.knero.android.tools.status.MultiStatusView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class FileBrowserActivity extends AppCompatActivity implements LocationBa
     private int mSelectCount = -1;
 
     private LocationBarView mLocationBarView;
+    private MultiStatusView mMultiStatusView;
     private RecyclerView mRecyclerView;
     private FileListAdapter mAdapter;
     private RecyclerViewHelper mHelper;
@@ -113,6 +115,8 @@ public class FileBrowserActivity extends AppCompatActivity implements LocationBa
     }
 
     private void setRealContentView() {
+        mMultiStatusView = findViewById(R.id.multi_status_view);
+        mMultiStatusView.showContent();
         mLocationBarView = findViewById(R.id.location_bar);
         mRecyclerView = findViewById(R.id.recycler_view);
         mAdapter = new FileListAdapter(this);
@@ -202,6 +206,11 @@ public class FileBrowserActivity extends AppCompatActivity implements LocationBa
             public void run() {
                 mAdapter.updateItems(files);
                 mAdapter.notifyDataSetChanged();
+                if (files.size() <= 0) {
+                    mMultiStatusView.showEmpty("当前文件夹为空");
+                } else {
+                    mMultiStatusView.showContent();
+                }
             }
         });
     }

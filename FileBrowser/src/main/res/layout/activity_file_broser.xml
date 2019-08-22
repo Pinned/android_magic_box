@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,8 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?colorPrimary"
-        android:theme="?toolbar">
-    </androidx.appcompat.widget.Toolbar>
+        android:theme="?toolbar"></androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/bottom_toolbar"
@@ -27,7 +25,7 @@
             android:padding="?bottomToolBar.opt.padding"
             android:text="@string/button_preview"
             android:textColor="?bottomToolBar.preview.textColor"
-            android:textSize="?bottomToolBar.opt.textSize"/>
+            android:textSize="?bottomToolBar.opt.textSize" />
 
         <TextView
             android:id="@+id/button_apply"
@@ -38,7 +36,7 @@
             android:padding="?bottomToolBar.opt.padding"
             android:text="@string/button_apply_default"
             android:textColor="?bottomToolBar.apply.textColor"
-            android:textSize="?bottomToolBar.opt.textSize"/>
+            android:textSize="?bottomToolBar.opt.textSize" />
     </FrameLayout>
 
     <LinearLayout
@@ -52,16 +50,23 @@
         <com.knero.android.tools.file.browser.ui.widget.location.LocationBarView
             android:id="@+id/location_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#DDDDDD"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:background="#DDDDDD" />
+
+        <com.knero.android.tools.status.MultiStatusView
+            android:id="@+id/multi_status_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.knero.android.tools.status.MultiStatusView>
     </LinearLayout>
 
 </RelativeLayout>
