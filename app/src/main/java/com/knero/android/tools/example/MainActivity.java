@@ -24,7 +24,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        BlackBox.of(this).with(new PermissionEvent(Manifest.permission.READ_PHONE_STATE)).execute(new Action() {
+            @Override
+            public void call() {
+                
+            }
+        });
     }
 
     public void checkLogin(View view) {

@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.knero.android.tools.debug.display">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application>
+        <provider
+            android:name=".DebugDisplayProvider"
+            android:authorities="${applicationId}.DebugDisplayProvider"
+            android:exported="false" />
+    </application>
+
+</manifest>

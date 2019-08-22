@@ -49,6 +49,7 @@ public class BlackBox {
                     .beginTransaction()
                     .add(blackBoxFragment, BLACK_BOX_TAG)
                     .commitNow();
+            fragmentManager.executePendingTransactions();
         }
         return blackBoxFragment;
     }
